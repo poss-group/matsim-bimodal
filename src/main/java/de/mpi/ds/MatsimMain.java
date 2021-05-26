@@ -274,8 +274,8 @@ public class MatsimMain {
 //        controler.configureQSimComponents(components -> {SBBTransitEngineQSimModule.configure(components);});
 
         controler.addOverridingModule(new DrtTrajectoryAnalyzer());
-        DrtPlanModifierConfigGroup drtGroup = ConfigUtils.addOrGetModule(config, DrtPlanModifierConfigGroup.class);
-        controler.addOverridingModule(new DrtPlanModifier(drtGroup));
+//        DrtPlanModifierConfigGroup drtGroup = ConfigUtils.addOrGetModule(config, DrtPlanModifierConfigGroup.class);
+//        controler.addOverridingModule(new DrtPlanModifier(drtGroup));
         controler.addOverridingModule(new CustomRoutingModule());
 
         double[] netDims = getNetworkDimensionsMinMax(controler.getScenario().getNetwork(), isGridAndPt);

@@ -61,8 +61,8 @@
                 <param name="constant" value="0.0"/>
                 <param name="dailyMonetaryConstant" value="0.0"/>
                 <param name="dailyUtilityConstant" value="0.0"/>
-                <param name="marginalUtilityOfDistance_util_m" value="-5.0"/>
-                <param name="marginalUtilityOfTraveling_util_hr" value="-6.0"/>
+                <param name="marginalUtilityOfDistance_util_m" value="-10.0"/>
+                <param name="marginalUtilityOfTraveling_util_hr" value="-10.0"/>
                 <param name="mode" value="walk"/>
                 <param name="monetaryDistanceRate" value="0.0"/>
             </parameterset>
@@ -70,8 +70,8 @@
                 <param name="constant" value="0.0"/>
                 <param name="dailyMonetaryConstant" value="0.0"/>
                 <param name="dailyUtilityConstant" value="0.0"/>
-                <param name="marginalUtilityOfDistance_util_m" value="-5.0"/>
-                <param name="marginalUtilityOfTraveling_util_hr" value="-5.0"/>
+                <param name="marginalUtilityOfDistance_util_m" value="-1.0"/>
+                <param name="marginalUtilityOfTraveling_util_hr" value="-1.0"/>
                 <param name="mode" value="drt"/>
                 <param name="monetaryDistanceRate" value="0.0"/>
             </parameterset>
@@ -92,7 +92,7 @@
         <parameterset type="teleportedModeParameters">
             <!-- 1.4 for manhatten, infinity for non walking, default 1.3 -->
             <!-- turn off walking -->
-            <!--            <param name="beelineDistanceFactor" value="1000000"/>-->
+<!--                        <param name="beelineDistanceFactor" value="1000000"/>-->
             <param name="beelineDistanceFactor" value="1.3"/>
             <param name="mode" value="walk"/>
             <param name="teleportedModeFreespeedFactor" value="null"/>
@@ -114,13 +114,13 @@
         <!-- Factor with which direct walk generalized cost is multiplied before it is compared to the pt generalized cost.  Set to a very high value to reduce direct walk results. -->
         <param name="directWalkFactor" value="1000000"/>
         <param name="extensionRadius" value="100.0"/>
-        <param name="maxBeelineWalkConnectionDistance" value="100.0"/>
+        <param name="maxBeelineWalkConnectionDistance" value="50.0"/>
         <param name="searchRadius" value="100.0"/>
     </module>
 
     <module name="qsim">
         <param name="simStarttimeInterpretation" value="onlyUseStarttime"/>
-<!--        <param name="simEndtimeInterpretation" value="onlyUseEndtime"/>-->
+        <!--        <param name="simEndtimeInterpretation" value="onlyUseEndtime"/>-->
         <param name="simEndtimeInterpretation" value="minOfEndtimeAndMobsimFinished"/>
         <param name="startTime" value="00:00:00"/>
         <param name="endTime" value="10:00:00"/>
@@ -128,23 +128,23 @@
     </module>
 
     <!--	Public Transport -->
-    <!--    <module name="swissRailRaptor">-->
-    <!--        &lt;!&ndash;		<param name="intermodalAccessEgressModeSelection" value="CalcLeastCostModePerStop" />&ndash;&gt;-->
-    <!--        <param name="useIntermodalAccessEgress" value="false"/>-->
+    <module name="swissRailRaptor">
+        <!--		<param name="intermodalAccessEgressModeSelection" value="CalcLeastCostModePerStop" />-->
+        <param name="useIntermodalAccessEgress" value="true"/>
 
-    <!--        &lt;!&ndash;		<parameterset type="intermodalAccessEgress">&ndash;&gt;-->
-    <!--        &lt;!&ndash;            <param name="mode" value="walk"/>&ndash;&gt;-->
-    <!--        &lt;!&ndash;			<param name="maxRadius" value="100"/>&ndash;&gt;-->
-    <!--        &lt;!&ndash;			<param name="initialSearchRadius" value="10"/>&ndash;&gt;-->
-    <!--        &lt;!&ndash;			<param name="searchExtensionRadius" value="10"/>&ndash;&gt;-->
-    <!--        &lt;!&ndash;		</parameterset>&ndash;&gt;-->
-    <!--        &lt;!&ndash;		<parameterset type="intermodalAccessEgress">&ndash;&gt;-->
-    <!--        &lt;!&ndash;			<param name="mode" value="drt" />&ndash;&gt;-->
-    <!--        &lt;!&ndash;			<param name="maxRadius" value="10000" />&ndash;&gt;-->
-    <!--        &lt;!&ndash;			<param name="initialSearchRadius" value="1000"/>&ndash;&gt;-->
-    <!--        &lt;!&ndash;			<param name="searchExtensionRadius" value="1000"/>&ndash;&gt;-->
-    <!--        &lt;!&ndash;		</parameterset>&ndash;&gt;-->
-    <!--    </module>-->
+        <!--		<parameterset type="intermodalAccessEgress">-->
+        <!--            <param name="mode" value="walk"/>-->
+        <!--			<param name="maxRadius" value="100"/>-->
+        <!--			<param name="initialSearchRadius" value="10"/>-->
+        <!--			<param name="searchExtensionRadius" value="10"/>-->
+        <!--		</parameterset>-->
+        <parameterset type="intermodalAccessEgress">
+            <param name="mode" value="drt"/>
+            <param name="maxRadius" value="1000"/>
+            <param name="initialSearchRadius" value="500"/>
+            <param name="searchExtensionRadius" value="500"/>
+        </parameterset>
+    </module>
 
     <module name="multiModeDrt">
         <parameterset type="drt">
@@ -154,9 +154,9 @@
             <!--			<param name="estimatedDrtSpeed" value="8.333333333333334"/>-->
             <param name="maxTravelTimeAlpha" value="1.5"/>
             <param name="maxTravelTimeBeta" value="1200.0"/>
-<!--            <param name="maxTravelTimeBeta" value="36000.0"/>-->
+            <!--            <param name="maxTravelTimeBeta" value="36000.0"/>-->
             <param name="maxWaitTime" value="1200.0"/>
-<!--            <param name="maxWaitTime" value="36000.0"/>-->
+            <!--            <param name="maxWaitTime" value="36000.0"/>-->
             <param name="operationalScheme" value="door2door"/>
             <param name="stopDuration" value="1.0"/>
             <param name="vehiclesFile" value="drtvehicles.xml"/>
@@ -220,12 +220,12 @@
         <param name="fractionOfIterationsToDisableInnovation" value="0"/>
     </module>
 
-<!--    <module name="SBBPt" >-->
-<!--        &lt;!&ndash; (iterationNumber % createLinkEventsInterval) == 0 defines in which iterations linkEnter- and linkLeave-events are created,-->
-<!--                "useful for visualization or analysis purposes. Defaults to 0. `0' disables the creation of events completely. &ndash;&gt;-->
-<!--        <param name="createLinkEventsInterval" value="0" />-->
-<!--        &lt;!&ndash; Leg modes used by the created transit drivers that should be simulated strictly according to the schedule. &ndash;&gt;-->
-<!--        <param name="deterministicServiceModes" value="train" />-->
-<!--    </module>-->
+    <!--    <module name="SBBPt" >-->
+    <!--        &lt;!&ndash; (iterationNumber % createLinkEventsInterval) == 0 defines in which iterations linkEnter- and linkLeave-events are created,-->
+    <!--                "useful for visualization or analysis purposes. Defaults to 0. `0' disables the creation of events completely. &ndash;&gt;-->
+    <!--        <param name="createLinkEventsInterval" value="0" />-->
+    <!--        &lt;!&ndash; Leg modes used by the created transit drivers that should be simulated strictly according to the schedule. &ndash;&gt;-->
+    <!--        <param name="deterministicServiceModes" value="train" />-->
+    <!--    </module>-->
 
 </config>
